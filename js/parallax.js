@@ -3,7 +3,7 @@ const ctx = canvas.getContext('2d');
 const CANVAS_WIDTH = canvas.width = 800;
 const CANVAS_HEIGHT = canvas.height = 700;
 
-let gameSpeed = 10;
+let gameSpeed = 5;
 
 // pareil que .appendChild()document.createElement('img);
 const backgroundLayer1 = new Image();
@@ -82,7 +82,7 @@ window.addEventListener('load', function(){
             }
             */
             this.x = Math.floor(this.x - this.speed);
-            //this.x2 = Math.floor(this.x2 - this.speed);
+            //this.x2 = Math.floor(this.x2 - this.speed); on avance de this.speed a chaque tour de boucle
         }
         draw(){
             ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
