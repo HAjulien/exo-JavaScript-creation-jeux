@@ -28,8 +28,11 @@ class Explosion {
         this.frame = 0;
         this.timer = 0;
         this.angle = Math.random() * 6.2;
+        this.sound = new Audio();
+        this.sound.src = 'audio/boom.wav'
     }
     update(){
+        if (this.frame === 0) this.sound.play(); 
         this.timer++;
         if(this.timer % 10 === 0){
             this.frame++;
