@@ -8,6 +8,7 @@ canvas.height = window.innerHeight;
 let timeToNextRaven = 0;
 let ravenInterval = 500;
 let lastTime = 0;
+let score = 0
 
 let ravens = [];
 class Raven{
@@ -50,6 +51,12 @@ class Raven{
         ctx.drawImage(this.image, this.frame * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height)
     }
 }
+
+function drawScore(){
+    ctx.fillStyle = 'white'
+}
+
+
 
 //const raven = new Raven(); verification avec 1 seul element
 
