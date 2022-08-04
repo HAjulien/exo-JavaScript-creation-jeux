@@ -41,6 +41,9 @@ class Raven{
         //color collision couleur sert de password unique
         this.randomColors = [Math.floor(Math.random() * 255), Math.floor(Math.random() * 255), Math.floor(Math.random() * 255)];
         this.color = 'rgb(' + this.randomColors[0] + ',' + this.randomColors[1] + ',' + this.randomColors[2] + ')';
+        //conditionnal expression false or true
+        this.hasTrail = Math.random() > 0.5 
+
     }
     update(deltaTime){
         if (this.y < 0 || this.y > canvas.height - this.height){
@@ -55,6 +58,12 @@ class Raven{
             if(this.frame > this.maxFrame) this.frame = 0;
             else this.frame++;
             this.timeSinceFlap = 0;
+            if (this.hasTrail){
+                this.x -= 10;
+                for (let i = 0; i < 5; i++){
+                    particles.push(new Particle(this.x, this.y, this.width, this.color));
+                }
+            }
         }
         //console.log(deltaTime);
         if(this.x < 0 - this.width) gameOver = true;
@@ -83,6 +92,7 @@ class Explosion {
         this.frameInterval = 200;
         this.markedForDeletion = false;
 
+
     }
     update(deltaTime){
         if(this.frame === 0) this.sound.play();
@@ -98,6 +108,35 @@ class Explosion {
     }
 }
 
+let particles = [];
+class Particle {
+    constructor (x, y, size, color){
+        //on place size en premier pour l'utiliser sur x et y pour pouvoir centrer sur raven
+        this.size = size;
+        this.x = x + this.size*0.5 + Math.random() * 50 - 25;
+        this.y = y + this.size*0.33 + Math.random() * 50 - 25;
+        this.radius = Math.random() * this.size*0.1;
+        this.maxRadius = Math.random() * 20 + 35;
+        this.markedForDeletion = false;
+        this.speedX = Math.random() * 1 + 0.5;
+        this.color = color;
+    }
+    update(){
+        this.x += this.speedX;
+        this.radius += 0.3;
+        if (this.radius > this.maxRadius - 5) this.markedForDeletion = true;
+        // -5 pour eviter le clignotement lorsque radius > max radius on declenche plut tot
+    }
+    draw(){
+        ctx.save(); //pour que le corbeau ne clignote pas, opacite n'agit que sur particule
+        ctx.globalAlpha = 1 - this.radius/this.maxRadius; //opacite de 0 a 1
+        ctx.beginPath();  //start the drawing
+        ctx.fillStyle = this.color;
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);  //draw circle 0 = start angle  Math.PI * 2 end angle
+        ctx.fill(); 
+        ctx.restore();  
+    }
+}
 
 function drawScore(){
     ctx.fillStyle = 'black';
@@ -124,6 +163,9 @@ window.addEventListener('click', function(e) {
             //collision detected
             object.markedForDeletion = true;
             score++;
+            if (object.hasTrail){
+                score += 9;    
+            } 
             explosions.push(new Explosion(object.x, object.y, object.width));
             //console.log(explosions);
         }
@@ -156,12 +198,13 @@ function animate(timestamp){
     drawScore();
 
     //array literal []  ... spread operator  particul class expense pour ajouter explosions array
-    [...ravens, ...explosions].forEach(object => object.update(deltaTime));
-    [...ravens, ...explosions].forEach(object => object.draw());
+    [...particles, ...ravens, ...explosions].forEach(object => object.update(deltaTime));
+    [...particles,  ...ravens, ...explosions].forEach(object => object.draw());
 
     //on crée un nouveau tableau filtré sur markedForDeletion = false
     ravens = ravens.filter(object => !object.markedForDeletion);
     explosions = explosions.filter(object => !object.markedForDeletion);
+    particles = particles.filter(object => !object.markedForDeletion);
     //console.log(ravens);
     
     if(!gameOver) requestAnimationFrame(animate);
