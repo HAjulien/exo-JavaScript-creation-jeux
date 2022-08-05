@@ -19,7 +19,7 @@ window.addEventListener('load', ()=>{
             this.enemyTypes = ['worm', 'ghost', 'spider'];
             //console.log(this.enemies);
         }
-        update(deltaTime){   //get deltaTime to update in function animate l:113
+        update(deltaTime){   //get deltaTime to update in function animate l:162
             this.enemies = this.enemies.filter( object => !object.markedForDeletion);
             if (this.enemyTimer > this.enemyInterval){
                 this.#addNewEnemy();
@@ -58,7 +58,7 @@ window.addEventListener('load', ()=>{
             this.frameInterval = 100;
             this.frameTimer = 0;
         }
-        update(deltaTime){ // get deltaTime from l:29
+        update(deltaTime){ // get deltaTime from l:22
             this.x-= this.velocityX * deltaTime;
             //remove enemies
             if (this.x < 0 - this.width) this.markedForDeletion = true;
@@ -70,7 +70,7 @@ window.addEventListener('load', ()=>{
                 this.frameTimer += deltaTime;
             };
         }
-        draw(ctx){  //draw using ctx from l:31 avoid global variable
+        draw(ctx){  //draw using ctx from l:34 avoid global variable
             //ctx.fillRect(this.x, this.y, this.width, this.height)
             ctx.drawImage(this.image, this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
         }
@@ -113,11 +113,11 @@ window.addEventListener('load', ()=>{
             this.angle+= 0.04;
 
         }
-        draw(ctx){ //get ctx from extends Enemy
+        draw(ctx){ //get ctx from extends Enemy (come from class Game)
             ctx.save();
             ctx.globalAlpha = 0.5;
             super.draw(ctx);
-            ctx.restore(); //ctx coming from l:32
+            ctx.restore(); 
         }
     }
 
@@ -159,7 +159,7 @@ window.addEventListener('load', ()=>{
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const deltaTime = timeStamp - lastTime;
         lastTime = timeStamp;
-        game.update(deltaTime);  //pass deltaTime to update l:29
+        game.update(deltaTime);  //pass deltaTime to update l:22
         game.draw();
         //console.log(deltaTime);
         requestAnimationFrame(animate);
