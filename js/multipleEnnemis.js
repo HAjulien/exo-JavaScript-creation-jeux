@@ -14,7 +14,7 @@ window.addEventListener('load', ()=>{
             this.width = width;
             this.height = height;
             this.enemies = [];
-            this.enemyInterval = 500;
+            this.enemyInterval = 800;
             this.enemyTimer = 0;
             this.enemyTypes = ['worm', 'ghost', 'spider'];
             //console.log(this.enemies);
