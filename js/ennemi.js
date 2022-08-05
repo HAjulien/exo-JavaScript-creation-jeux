@@ -57,7 +57,7 @@ animate()
 class Ennemy {
     constructor(){
         this.image = new Image();
-        this.image.src = 'images/ennemies/ennemy1.png';
+        this.image.src = 'images/ennemis/ennemy1.png';
         //this.speed = Math.random() * 4 - 2; on va faire voler sur petite zone
         this.spriteWidth = 293;
         this.spriteHeight = 155;

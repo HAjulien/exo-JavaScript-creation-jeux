@@ -41,7 +41,7 @@ class Raven{
         //color collision couleur sert de password unique
         this.randomColors = [Math.floor(Math.random() * 255), Math.floor(Math.random() * 255), Math.floor(Math.random() * 255)];
         this.color = 'rgb(' + this.randomColors[0] + ',' + this.randomColors[1] + ',' + this.randomColors[2] + ')';
-        //conditionnal expression false or true
+        //conditionnal expression true or false
         this.hasTrail = Math.random() > 0.5 
 
     }
@@ -59,6 +59,7 @@ class Raven{
             else this.frame++;
             this.timeSinceFlap = 0;
             if (this.hasTrail){
+                //les ravens vont plus vite si ils ont hasTrail
                 this.x -= 10;
                 for (let i = 0; i < 5; i++){
                     particles.push(new Particle(this.x, this.y, this.width, this.color));
@@ -197,7 +198,7 @@ function animate(timestamp){
 
     drawScore();
 
-    //array literal []  ... spread operator  particul class expense pour ajouter explosions array
+    //array literal []  ... spread operator  particul class expense pour ajouter explosions array attention ordre particles derriere ravens derriere explosions
     [...particles, ...ravens, ...explosions].forEach(object => object.update(deltaTime));
     [...particles,  ...ravens, ...explosions].forEach(object => object.draw());
 
@@ -211,5 +212,5 @@ function animate(timestamp){
     else drawGameOver();
 }
 
-//pour regler lepb timestamp undefined, on defini une valeur de départ de 0
+//pour regler le probleme timestamp undefined, on defini une valeur de départ de 0
 animate(0)
