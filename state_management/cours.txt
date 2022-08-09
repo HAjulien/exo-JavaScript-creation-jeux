@@ -23,7 +23,7 @@ use native JAVASCRIPT MODULES to split our code into multiple parts (part of ES6
 
 Types of exports:
     1) Named exports     need of {x, y, z, ....}       can have multiple  
-    2) Default export    nedd keyword default          only one 
+    2) Default export    need keyword default          only one 
 
 4 Principles of Object Oriented Programming:
     1) ENCAPSULATION (ex: class PLAYER in player.js)
@@ -31,5 +31,12 @@ Types of exports:
             -can be use to protect our data from unwanted outside access, it simplifies maintenance of our code by keeping it organised and easier to understand
 
     2) INHERITANCE
+            -is a process where one class inherits attributes and methods from another class.
+            -we use it to avoid code repetition
+            -exemple: (in state.js) class State is the PARENT CLASS also call 'super' class
+                      class StandingRight CHILD CLASS also call 'sub' class   extends keywords
+            -use SUPER keyword in child classes to access and call methods on object's parent
     3) POLYMORPHISM
+            -allows methods to display different behaviour depending on which class calls it
+            -exemple: (in state.js) enter() and handleInput() in CHILD CLASS standingLeft and StandingRight 
     4) ABSTRACTION
