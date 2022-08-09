@@ -16,14 +16,17 @@ window.addEventListener('load', function() {
     //console.log(player);
     const input = new InputHandler();
 
-    function animate(){
+    let lastTime = 0;
+    function animate(timeStamp){
+        const deltaTime = timeStamp - lastTime;
+        lastTime = timeStamp;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         //console.log(input.lastKey);
         player.update(input.lastKey);
-        player.draw(ctx);
+        player.draw(ctx, deltaTime);
         drawStatusText(ctx, input, player);
         requestAnimationFrame(animate)
     }
 
-    animate();
+    animate(0);
 })
