@@ -1,0 +1,35 @@
+DESIGN PATTERNS toolkit of tried ans tested solutions to common problems in software design
+
+
+
+CREATIONAL DESIGN PATTERNS provide us different objet creation mechanisms
+
+STRUCTURAL DESIGN PATTERNS help us to asseble into flexible and efficient code structures
+
+//utliser dans ce cours
+BEHAVIOURAL DESIGN PATTERNS deal with communication and assigning responsibilities between objects
+
+STATE DESIGN PATTERNS is a behavioural pattern that lets an object alter it's behaviour when it's internal state changes
+
+avoid if/else complicate statement if we decide to add more move or feature etc... (spaghetti code)
+more easy to maintain the code
+
+code structure fintite State Machine, limite set of state (standing, jumping, sitting...) react only on a limite set of INPUT we define.
+we have a CLASS for each STATE
+
+learn implement STATE DESIGN PATTERNS  in a side-scroller game 
+use native JAVASCRIPT MODULES to split our code into multiple parts (part of ES6 standard) MEMBERS of MODULES (= class, function, variables) can be exported and imported around our program, wherever they are needed
+
+
+Types of exports:
+    1) Named exports     need of {x, y, z, ....}       can have multiple  
+    2) Default export    nedd keyword default          only one 
+
+4 Principles of Object Oriented Programming:
+    1) ENCAPSULATION (ex: class PLAYER in player.js)
+            -we wrap variables or data and functions that operate on that data into objects
+            -can be use to protect our data from unwanted outside access, it simplifies maintenance of our code by keeping it organised and easier to understand
+
+    2) INHERITANCE
+    3) POLYMORPHISM
+    4) ABSTRACTION
