@@ -1,6 +1,6 @@
 import Player from './player.js';
 import {InputHandler} from './input.js';
-import {Background} from './bakground.js';
+import {Background} from './background.js';
 import {FlyingEnemy, GroundEnemy, ClimbingEnemy} from './enemies.js';
 
 window.addEventListener('load', function(){
