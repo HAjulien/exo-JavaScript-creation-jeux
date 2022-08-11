@@ -18,6 +18,8 @@ export class Sitting extends State {
         this.player = player;
     }
     enter(){  //execute only 1
+        this.player.frameX = 0;  //prevent quick blink when we enter with a frameX higher than maxFrame of this state.
+        this.player.maxFrame = 4;
         this.player.frameY = 5;
     }
     handlerInput(input) { 
@@ -33,6 +35,8 @@ export class Running extends State {
         this.player = player;
     }
     enter(){
+        this.player.frameX = 0;
+        this.player.maxFrame = 8;
         this.player.frameY = 3;
     }
     handlerInput(input) {
@@ -51,6 +55,8 @@ export class Jumping extends State {
     }
     enter(){
         if (this.player.onGround()) this.player.vy -= 27;
+        this.player.frameX = 0;
+        this.player.maxFrame = 6;
         this.player.frameY = 1;
     }
     handlerInput(input) {
@@ -66,6 +72,8 @@ export class Falling extends State {
         this.player = player;
     }
     enter(){
+        this.player.frameX = 0;
+        this.player.maxFrame = 6;
         this.player.frameY = 2;
     }
     handlerInput(input) {

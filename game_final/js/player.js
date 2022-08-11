@@ -40,9 +40,14 @@ export  default class Player {
         if(!this.onGround()) this.vy += this.weight;
         else this.vy = 0;
 
-        if (this.frameX < this.maxFrame) this.frameX++;
-        else this.FrameX = 0;
-        console.log(this.frameX);
+        // sprite animation
+        if (this.frameTimer > this.frameInterval){
+            this.frameTimer = 0;
+            if (this.frameX < this.maxFrame) this.frameX++;
+            else this.frameX = 0;
+        }else {
+            this.frameTimer += deltaTime;
+        }
     }
     
     draw(context){
