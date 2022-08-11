@@ -1,5 +1,6 @@
 import Player from './player.js';
 import {InputHandler} from './input.js';
+import {Background} from './bakground.js';
 
 window.addEventListener('load', function(){
 
@@ -12,15 +13,21 @@ window.addEventListener('load', function(){
         constructor(width, height){
             this.width = width;
             this.height = height;
+            this.speed = 0;
+            this.maxSpeed = 4;
+            this.groundMargin = 80;
             //create automatically a instance of player and InputHandler (import) when i create an instance of game + i need game as argument for new Player so i pass with keyword THIS (refer to game object)
+            this.background = new Background(this);
             this.player = new Player(this);
             this.input = new InputHandler();
         }
         update(deltaTime) {
+            this.background.update();
             this.player.update(this.input.keys, deltaTime);
         }
         draw(context) {
-            this.player.draw(context)
+            this.background.draw(context);
+            this.player.draw(context);
         } 
     }
 
