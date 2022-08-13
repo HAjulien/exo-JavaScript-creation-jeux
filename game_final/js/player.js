@@ -1,5 +1,6 @@
 import { Sitting, Running, Jumping, Falling, Rolling, Diving, Hit } from "./playerStates.js";
 import { collisionAnimation } from "./collisionAnimation.js";
+import { FloatingMessage } from "./floatingMessages.js";
 
 export  default class Player {
     constructor(game){
@@ -21,6 +22,7 @@ export  default class Player {
         this.maxSpeed = 10;
         // each state need their own enter methods...
         this.states = [new Sitting(this.game), new Running(this.game), new Jumping(this.game), new Falling(this.game), new Rolling(this.game), new Diving(this.game), new Hit(this.game)];
+        this.currentState = null;
 
     }
     update(input, deltaTime){
@@ -72,14 +74,21 @@ export  default class Player {
                 enemy.x < this.x + this.width &&
                 enemy.x + enemy.width > this.x &&
                 enemy.y < this.y + this.height &&
-                enemy.y + enemy.height > this.y
+                enemy.y + enemy.height > this.y 
             ){
                 enemy.markedForDeletion = true;
                 this.game.collisions.push(new collisionAnimation(this.game, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5));
                 if (this.currentState === this.states[4] || this.currentState === this.states[5]) {
                     this.game.score++;
-                } else {
+                    this.game.floatingMessages.push(new FloatingMessage('+1', enemy.x, enemy.y, 150, 50));
+                    
+                } else if (this.currentState === this.states[6]) {
+                } 
+                else {
                     this.setState(6, 0);
+                    this.game.score-=5;
+                    this.game.lives--;
+                    if (this.game.lives <= 0 ) this.game.gameOver = true;
                 }
             }
         })
