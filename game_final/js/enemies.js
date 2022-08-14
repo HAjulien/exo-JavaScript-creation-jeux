@@ -42,6 +42,7 @@ export class FlyingEnemy extends Enemy {
         this.image = enemy_fly;
         this.angle = 0;
         this.va = Math.random() * 0.1 + 0.1;
+        this.point = 2;
     }
     update(deltaTime){
         super.update(deltaTime);
@@ -64,6 +65,7 @@ export class GroundEnemy extends Enemy {
         this.speedX = 0;
         this.speedY = 0;
         this.maxFrame = 1;
+        this.point = 1;
     }
 
 }
@@ -80,6 +82,8 @@ export class ClimbingEnemy extends Enemy {
         this.speedX = 0;
         this.speedY = Math.random() > 0.5 ? 1 : -1;
         this.maxFrame = 5;
+        this.point = 5;
+
     }
     update(deltaTime){
         super.update(deltaTime);

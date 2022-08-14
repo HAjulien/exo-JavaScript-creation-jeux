@@ -32,7 +32,7 @@ window.addEventListener('load', function(){
             this.enemyInterval = 1000;
             this.debug = false;
             this.score = 0;
-            this.winningScore = 20;
+            this.winningScore = 40;
             this.time = 25000;
             //this.time = 0;
             //this.maxTime = 30000;
