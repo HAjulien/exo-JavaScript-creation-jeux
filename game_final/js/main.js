@@ -32,13 +32,15 @@ window.addEventListener('load', function(){
             this.enemyInterval = 1000;
             this.debug = false;
             this.score = 0;
-            this.winningScore = 25;
-            this.time = 30000;
+            this.winningScore = 20;
+            this.time = 25000;
             //this.time = 0;
             //this.maxTime = 30000;
             this.gameOver = false;
             this.lives = 7;
             this.fontColor = 'black';
+            this.fontColor5SecLast = 'red';
+            this.fontColorWinningScore = 'green';
             this.player.currentState = this.player.states[0];
             this.player.currentState.enter();
     
@@ -127,5 +129,10 @@ window.addEventListener('load', function(){
         game.draw(ctx);
         if(!game.gameOver)requestAnimationFrame(animate);
     }
-    animate(0)
+    animate(0);
+
+    //restart
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') location.reload();
+    })
 });

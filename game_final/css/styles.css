@@ -18,3 +18,19 @@
 #player, #layer1, #layer2, #layer3, #layer4, #layer5, #enemy_spider_big, #enemy_plant, #enemy_fly, #fire, #boom, #live{
     display: none;
 }
+p{
+    text-align: center;
+    margin-top: 10px;
+}
+span{
+    margin: 0 5px;
+    padding: 1px;
+    width: 100px;
+    background-color: lightgray;
+    border: 1px solid #000;
+    border-radius: 3px;
+}
+
+.span1{
+    padding: 0 30px;
+}
