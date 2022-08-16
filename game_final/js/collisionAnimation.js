@@ -15,12 +15,16 @@ export class collisionAnimation{
         this.fps = Math.random() * 10 + 5;
         this.frameInterval = 1000/this.fps;
         this.frameTimer = 0; 
+        this.sound = new Audio();
+        this.sound.src = 'assets/audio/boom.wav';
+
     }
     draw(context){
         context.drawImage( this.image, this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
     }
     update(deltaTime){
         this.x -= this.game.speed;
+        this.sound.play();
         if (this.frameTimer > this.frameInterval){
             this.frameX++;
             this.frameTimer = 0;

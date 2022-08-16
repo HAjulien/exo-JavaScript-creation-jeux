@@ -128,6 +128,8 @@ window.addEventListener('load', function(){
         game.update(deltaTime);
         game.draw(ctx);
         if(!game.gameOver)requestAnimationFrame(animate);
+        if(game.gameOver) stopMusic();
+
     }
     animate(0);
 
@@ -135,4 +137,18 @@ window.addEventListener('load', function(){
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') location.reload();
     })
+
+    //music
+    const audio = new Audio('assets/audio/level_music.mp3');
+
+    function music(){
+        audio.play();
+    }
+
+    function stopMusic(){
+        audio.pause()
+    }
+    
+    music();
+
 });
