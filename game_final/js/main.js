@@ -142,13 +142,11 @@ window.addEventListener('load', function(){
     const audio = new Audio('assets/audio/level_music.mp3');
 
     function music(){
-        audio.play();
+        audio.play()
     }
 
+    music();
     function stopMusic(){
         audio.pause()
     }
-    
-    music();
-
 });
